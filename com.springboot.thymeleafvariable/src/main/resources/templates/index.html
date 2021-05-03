@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Printout the variables</h1>
+	<h4 th:text = "${variable1} + ' ' + ${variable2}"></h4>
+	<h4 >List of courses we offer</h4>
+	
+	<table border="1">
+		<thead>
+			<tr>
+			 	<th>Serial no.
+			 	</th>
+			 	<th>
+					Index
+				</th>
+				<th>
+					Size
+				</th>
+				<th>
+					Course list
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each = "course,itr :${courses}">
+				<td th:text = "${itr.count}">
+				</td>
+				<td th:text = "${itr.index}">
+				</td>
+				<td th:text = "${itr.size}">
+				</td>
+				<td th:text = "${course}">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<h2 th:with ="subject1 = ${courses[1]}, subject2 = ${courses[2]}">
+	<p th:text = "${subject1}" ></p>
+	<p th:text = "${subject2}" ></p>
+	
+	</h2>
+	<!-- Creating variable in thymeleaf -->
+	<div th:with ="fname = 'John' , lname = 'milton', fullname = ${fname} + ${lname}">
+		First name : <span th:text = "${fname}"></span></br>
+		Last name : <span th:text = "${lname}"></span></br>
+		Full name : <span th:text = "${fullname}"></span></br>
+	</div>
+	<!--  
+	<!-- Creating array in thymeleaf -->
+	<th:block th:with = "courses = ${{'Java','Python', 'SQL'}} ">
+		<table border="1">
+			<thead>
+				<tr>
+					<th> SI no.
+					</th>
+					<th> Course
+					</th>
+					<th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each ="course,iter:${courses}">
+					<td th:text = "${iter.count}">
+					
+					</td>
+					<td th:text = "${course}">
+					</td>
+					
+				</tr>
+			</tbody>
+		</table>
+	</th:block>
+	
+	-->
+	
+</body>
+</html>
